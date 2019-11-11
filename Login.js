@@ -1,75 +1,82 @@
 // Login.js
-import React from 'react'
-import { StyleSheet } from 'react-native'
-import { Form,Button,Item,Input,Container, Header, Title, Content, Body,Text,Footer } from 'native-base';
-import firebase from 'react-native-firebase'
+import React from "react";
+import { StyleSheet } from "react-native";
+import {
+  Form,
+  Button,
+  Item,
+  Input,
+  Container,
+  Header,
+  Title,
+  Content,
+  Body,
+  Text,
+  Footer
+} from "native-base";
+// import firebase from 'react-native-firebase'
 
 export default class Login extends React.Component {
-  state = { email: '', password: '', errorMessage: null }
+  state = { email: "", password: "", errorMessage: null };
   handleLogin = () => {
-	   console.log('handleLogin')
-    const { email, password } = this.state
-    firebase
+    console.log("handleLogin");
+    const { email, password } = this.state;
+    /*firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => this.props.navigation.navigate('Main'))
-      .catch(error => this.setState({ errorMessage: error.message }))
-  }
-  
-  
+			.catch(error => this.setState({ errorMessage: error.message })) 
+			*/
+  };
+
   render() {
     return (
-	
-	<Container style={styles.container} >
-	
-		 <Content>
-			 <Text>Login</Text>
-				{this.state.errorMessage &&
-				  <Text style={{ color: 'red' }}>
-					{this.state.errorMessage}
-				 </Text>
-				}
-			<Form>
-				<Item>
-				  <Input placeholder="Email"  
-					onChangeText={email => this.setState({ email })}
-					value={this.state.email}
-					/>
-				</Item>
-				<Item last>
-					<Input secureTextEntry placeholder="Password"
-					onChangeText={password => this.setState({ password })}
-					value={this.state.password}
-					/>
-				</Item>
+      <Container style={styles.container}>
+        <Content>
+          <Text>Login</Text>
+          {this.state.errorMessage && (
+            <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
+          )}
+          <Form>
+            <Item>
+              <Input
+                placeholder="Email"
+                onChangeText={email => this.setState({ email })}
+                value={this.state.email}
+              />
+            </Item>
+            <Item last>
+              <Input
+                secureTextEntry
+                placeholder="Password"
+                onChangeText={password => this.setState({ password })}
+                value={this.state.password}
+              />
+            </Item>
           </Form>
-			<Button title="Login" onPress={this.handleLogin} />
-      
+          <Button title="Login" onPress={this.handleLogin} />
         </Content>
-		<Footer>
-			<Button
-			title="Don't have an account? Sign Up"
-			onPress={() => this.props.navigation.navigate('SignUp')}
-			/>
-		</Footer>
-		
-	</Container>	
-	
-	
-    )
+        <Footer>
+          <Button
+            title="Don't have an account? Sign Up"
+            onPress={() => this.props.navigation.navigate("SignUp")}
+          />
+        </Footer>
+      </Container>
+    );
   }
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   },
   textInput: {
     height: 40,
-    width: '90%',
-    borderColor: 'gray',
+    width: "90%",
+    borderColor: "gray",
     borderWidth: 1,
     marginTop: 8
   }
-})
+});
